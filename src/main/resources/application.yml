@@ -1,17 +1,32 @@
+#server:
+#  port: 8081
+#
+#spring:
+#  application:
+#    name: DEPARTMENT-SERVICE
+#
+#eureka:
+#  client:
+#    register-with-eureka:
+#      value: true
+#    fetch-registry:
+#      value: true;
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#    instance:
+#      hostname: localhost
 server:
   port: 8081
 
-spring:
-  application:
-    name: DEPARTMENT-SERVICE
-
-eureka:
-  client:
-    register-with-eureka:
-      value: true
-    fetch-registry:
-      value: true;
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    instance:
-      hostname: localhost
+#spring:
+#  application:
+#    name: user-service
+#
+resilience4j:
+  retry:
+    instances:
+      basic:
+        #Số lần thử tối đa (bao gồm cả cuộc gọi đầu tiên là lần thử đầu tiên)
+        maxRetryAttemps:  5
+        #Khoảng thời gian chờ cố định giữa các lần thử lại
+        waitDuration:  3s
