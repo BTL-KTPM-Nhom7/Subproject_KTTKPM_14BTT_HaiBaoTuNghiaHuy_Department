@@ -30,3 +30,26 @@ resilience4j:
         maxRetryAttemps:  5
         #Khoảng thời gian chờ cố định giữa các lần thử lại
         waitDuration:  3s
+#server:
+#  port: 8081
+#
+#  #spring:
+#  #  application:
+#  #    name: user-service
+#  #
+#  ratelimiter:
+#    instances:
+#      #      RateLimiter object used in RateLimitingService.basicExample()
+#      #      basicExample:
+#      #        #1 request di qua
+#      #        limitForPeriod: 1
+#      #        # trong 10s
+#      #        limitRefreshPeriod: 10s
+#      #        # thời gian requet tiếp theo vào đợi là 5s
+#      #        timeoutDuration: 10s
+#      #
+#      #      # RateLimiter object used in RateLimitingService.timeoutExample()
+#      timeoutExample:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 250ms

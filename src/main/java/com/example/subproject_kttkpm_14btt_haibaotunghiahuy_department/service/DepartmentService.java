@@ -4,6 +4,7 @@ import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.De
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Student;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.repository.DepartmentRepository;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.vo.ResponseTemplateVO;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,12 @@ public class DepartmentService {
     public Department saveDepartment(Department department) {
         return departmentRepository.save(department);
     }
+    private int flag = 0;
 
     @Retry(name= "basic", fallbackMethod = "fallbackRetry")
     public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(Long departmentId) {
+        flag = flag + 1;
+        System.out.print("retry lan" + flag);
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Department department = departmentRepository.findById(departmentId).get();
         vo.setDepartment(department);
@@ -38,8 +42,9 @@ public class DepartmentService {
         return  new ResponseEntity<ResponseTemplateVO>(vo, HttpStatus.OK);
     }
     public ResponseEntity <String> fallbackRetry(RuntimeException e){
+        flag = 0;
         System.out.print("error" + e.getMessage());
         ResponseTemplateVO vo = new ResponseTemplateVO();
-        return new ResponseEntity <String>("khong tim thay du lieu",HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity <String>("Du lieu khong thanh cong",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
