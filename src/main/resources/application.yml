@@ -1,32 +1,64 @@
-#server:
-#  port: 8081
-#
-#spring:
-#  application:
-#    name: DEPARTMENT-SERVICE
-#
-#eureka:
-#  client:
-#    register-with-eureka:
-#      value: true
-#    fetch-registry:
-#      value: true;
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka
-#    instance:
-#      hostname: localhost
 server:
   port: 8081
 
-#spring:
-#  application:
-#    name: user-service
-#
-resilience4j:
-  retry:
+  #spring:
+  #  application:
+  #    name: user-service
+  #
+  ratelimiter:
     instances:
-      basic:
-        #Số lần thử tối đa (bao gồm cả cuộc gọi đầu tiên là lần thử đầu tiên)
-        maxRetryAttemps:  5
-        #Khoảng thời gian chờ cố định giữa các lần thử lại
-        waitDuration:  3s
+      #      RateLimiter object used in RateLimitingService.basicExample()
+      #      basicExample:
+      #        #1 request di qua
+      #        limitForPeriod: 1
+      #        # trong 10s
+      #        limitRefreshPeriod: 10s
+      #        # thời gian requet tiếp theo vào đợi là 5s
+      #        timeoutDuration: 10s
+      #
+      #      # RateLimiter object used in RateLimitingService.timeoutExample()
+      timeoutExample:
+        limitForPeriod: 1
+        limitRefreshPeriod: 1s
+        timeoutDuration: 250ms
+#
+#      # RateLimiter object used in RateLimitingService.multipleRateLimitsExample()
+#      multipleRateLimiters_rps_limiter:
+#        limitForPeriod: 2
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 2s
+#
+#      multipleRateLimiters_rpm_limiter:
+#        limitForPeriod: 40
+#        limitRefreshPeriod: 1m
+#        timeoutDuration: 2s
+#
+#      # RateLimiter object used in RateLimitingService.changeLimitsExample()
+#      changeLimitsExample:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 1s
+#
+#       RateLimiter object used in RateLimitingService.retryAndRateLimitExample()
+#      retryAndRateLimitExample:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 250ms
+
+#      # RateLimiter object used in RateLimitingService.rateLimiterEventsExample()
+#      rateLimiterEventsExample:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 50ms
+#
+#      # RateLimiter object used in RateLimitingService.fallbackExample()
+#      fallbackExample:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 500ms
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
