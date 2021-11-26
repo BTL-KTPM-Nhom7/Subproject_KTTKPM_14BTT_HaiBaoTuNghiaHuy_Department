@@ -4,6 +4,7 @@ import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.De
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service.DepartmentService;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.vo.ResponseTemplateVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class DepartmentController
     }
 
     @GetMapping("/{id}")
-    public ResponseTemplateVO getStudentWithDepartment(@PathVariable("id") Long id){
+    public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(@PathVariable("id") Long id){
         return departmentService.getStudentWithDepartment(id);
     }
 }
