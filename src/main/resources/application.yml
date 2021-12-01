@@ -1,23 +1,31 @@
-#server:
-#  port: 8081
-#
+server:
+  port: 8081
+
+
+spring:
+  application:
+    name: department-service
+  config:
+    import: "optional:configserver:"
+
+
 #spring:
 #  application:
 #    name: DEPARTMENT-SERVICE
 #
-#eureka:
-#  client:
-#    register-with-eureka:
-#      value: true
-#    fetch-registry:
-#      value: true;
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka
-#    instance:
-#      hostname: localhost
-server:
-  port: 8081
-
+eureka:
+  client:
+    register-with-eureka:
+      value: true
+    fetch-registry:
+      value: true;
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
+#server:
+#  port: 8081
+#
 #spring:
 #  application:
 #    name: user-service

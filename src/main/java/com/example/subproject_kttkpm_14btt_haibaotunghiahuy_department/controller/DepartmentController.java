@@ -10,7 +10,9 @@ import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service.U
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.util.JwtUtil;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.vo.ResponseTemplateVO;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +33,8 @@ public class DepartmentController
 
     @Autowired
     private TokenService tokenService;
+    @Value("${myName}")
+    public String name;
 
     @PostMapping("/")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -75,5 +79,8 @@ public class DepartmentController
 
         return ResponseEntity.ok(token.getToken());
     }
-
+    @GetMapping("/name")
+    public String getName() {
+        return name;
+    }
 }
