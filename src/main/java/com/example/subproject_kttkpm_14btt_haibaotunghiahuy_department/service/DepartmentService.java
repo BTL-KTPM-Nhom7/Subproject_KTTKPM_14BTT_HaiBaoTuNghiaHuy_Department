@@ -28,6 +28,7 @@ public class DepartmentService {
     private int flag = 0;
 
     @Retry(name= "basic", fallbackMethod = "fallbackRetry")
+    @RateLimiter(name = "timeoutExample", fallbackMethod = "fallbackRatelimiter")
     public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(Long departmentId) {
         flag = flag + 1;
         System.out.print("retry lan" + flag);
@@ -46,5 +47,11 @@ public class DepartmentService {
         System.out.print("error" + e.getMessage());
         ResponseTemplateVO vo = new ResponseTemplateVO();
         return new ResponseEntity <String>("Du lieu khong thanh cong",HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    public ResponseEntity <String> fallbackRatelimiter(RuntimeException e){
+        flag = 0;
+        System.out.print("error" + e.getMessage());
+        ResponseTemplateVO vo = new ResponseTemplateVO();
+        return new ResponseEntity <String>("RateLimter thanh cong",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

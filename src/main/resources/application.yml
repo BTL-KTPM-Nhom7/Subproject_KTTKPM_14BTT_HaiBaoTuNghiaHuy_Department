@@ -45,19 +45,19 @@ resilience4j:
 #  #  application:
 #  #    name: user-service
 #  #
-#  ratelimiter:
-#    instances:
-#      #      RateLimiter object used in RateLimitingService.basicExample()
-#      #      basicExample:
-#      #        #1 request di qua
-#      #        limitForPeriod: 1
-#      #        # trong 10s
-#      #        limitRefreshPeriod: 10s
-#      #        # thời gian requet tiếp theo vào đợi là 5s
-#      #        timeoutDuration: 10s
-#      #
-#      #      # RateLimiter object used in RateLimitingService.timeoutExample()
-#      timeoutExample:
-#        limitForPeriod: 1
-#        limitRefreshPeriod: 1s
-#        timeoutDuration: 250ms
+  ratelimiter:
+    instances:
+      #      RateLimiter object used in RateLimitingService.basicExample()
+      #      basicExample:
+      #        #1 request di qua
+      #        limitForPeriod: 1
+      #        # trong 10s
+      #        limitRefreshPeriod: 10s
+      #        # thời gian requet tiếp theo vào đợi là 5s
+      #        timeoutDuration: 10s
+      #
+      #      # RateLimiter object used in RateLimitingService.timeoutExample()
+      timeoutExample:
+        limitForPeriod: 1
+        limitRefreshPeriod: 1s
+        timeoutDuration: 250ms
