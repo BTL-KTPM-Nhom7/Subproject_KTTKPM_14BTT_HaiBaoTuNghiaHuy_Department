@@ -1,8 +1,10 @@
 package com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service;
 
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Department;
+import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Role;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Student;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.repository.DepartmentRepository;
+import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.repository.RoleRepository;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.vo.ResponseTemplateVO;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -18,6 +20,8 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -54,4 +58,5 @@ public class DepartmentService {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         return new ResponseEntity <String>("RateLimter thanh cong",HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }

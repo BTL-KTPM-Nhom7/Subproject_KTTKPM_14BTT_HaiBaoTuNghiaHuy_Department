@@ -2,9 +2,11 @@ package com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.controll
 
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.authen.UserPrincipal;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Department;
+import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Role;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.Token;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.entity.User;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service.DepartmentService;
+import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service.RoleService;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service.TokenService;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.service.UserService;
 import com.example.subproject_kttkpm_14btt_haibaotunghiahuy_department.util.JwtUtil;
@@ -32,9 +34,13 @@ public class DepartmentController
     private JwtUtil jwtUtil;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private TokenService tokenService;
-    @Value("${myName}")
-    public String name;
+
+//    @Value("${myName}")
+//    public String name;
 
     @PostMapping("/")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -46,6 +52,12 @@ public class DepartmentController
     @PreAuthorize("hasAnyAuthority('USER')")
     public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(@PathVariable("id") Long id){
         return departmentService.getStudentWithDepartment(id);
+    }
+
+    @PostMapping("/addRole")
+    public Role addNewRole(@RequestBody Role r){
+        roleService.addNewRole(r);
+        return r;
     }
 
     @PostMapping("/register")
@@ -79,8 +91,8 @@ public class DepartmentController
 
         return ResponseEntity.ok(token.getToken());
     }
-    @GetMapping("/name")
-    public String getName() {
-        return name;
-    }
+//    @GetMapping("/name")
+//    public String getName() {
+//        return name;
+//    }
 }
