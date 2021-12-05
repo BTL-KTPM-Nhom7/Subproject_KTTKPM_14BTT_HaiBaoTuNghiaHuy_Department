@@ -39,8 +39,8 @@ public class DepartmentController
     @Autowired
     private TokenService tokenService;
 
-//    @Value("${myName}")
-//    public String name;
+    @Value("${myName}")
+    public String name;
 
     @PostMapping("/")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -91,8 +91,8 @@ public class DepartmentController
 
         return ResponseEntity.ok(token.getToken());
     }
-//    @GetMapping("/name")
-//    public String getName() {
-//        return name;
-//    }
+    @GetMapping("/name")
+    public String getName() {
+        return name;
+    }
 }
