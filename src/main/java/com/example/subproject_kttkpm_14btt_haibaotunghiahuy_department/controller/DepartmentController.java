@@ -49,7 +49,7 @@ public class DepartmentController
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER') or hasAnyAuthority('ADMIN')")
     public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(@PathVariable("id") Long id){
         return departmentService.getStudentWithDepartment(id);
     }
