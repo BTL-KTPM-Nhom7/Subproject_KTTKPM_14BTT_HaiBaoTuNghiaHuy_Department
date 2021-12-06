@@ -39,7 +39,7 @@ public class DepartmentService {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Department department = departmentRepository.findById(departmentId).get();
         vo.setDepartment(department);
-        Student student = restTemplate.getForObject("http://localhost:8080/student/"
+        Student student = restTemplate.getForObject("https://subprj-student.herokuapp.com/student/"
                                 + department.getStudentId(),
                 Student.class);
 
