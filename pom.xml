@@ -14,7 +14,7 @@
     <name>Subproject_KTTKPM_14BTT_HaiBaoTuNghiaHuy_Department</name>
     <description>Subproject_KTTKPM_14BTT_HaiBaoTuNghiaHuy_Department</description>
     <properties>
-        <java.version>11</java.version>
+
         <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
     <dependencies>
