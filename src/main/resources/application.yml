@@ -7,6 +7,9 @@ spring:
     name: department-service
   config:
     import: "optional:configserver:"
+  cloud:
+    config:
+      uri: https://subprj-config-server.herokuapp.com/
 
 
 #spring:
